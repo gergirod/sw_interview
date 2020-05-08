@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Interview</string>
+    <string name="search_users">search users...</string>
+    <string name="save">SAVE</string>
+    <string name="favorites_users">Favorite Users</string>
+    <string name="all_users">All Users</string>
+    <string name="dismiss">DISMISS</string>
+    <string name="phone_number">Phone : %1$s</string>
+    <string name="cell_phone_number">Cell Phone : %1$s</string>
+    <string name="email">Email : %1$s</string>
+    <string name="nationality">Nationality : %1$s</string>
+    <string name="not_available">Action not available</string>
+</resources>
