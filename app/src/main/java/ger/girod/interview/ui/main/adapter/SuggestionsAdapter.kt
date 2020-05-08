@@ -1,14 +1,12 @@
-package ger.girod.interview.ui.main
+package ger.girod.interview.ui.main.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import coil.api.load
 import coil.transform.CircleCropTransformation
-import ger.girod.interview.domain.model.UserModel
 import ger.girod.interview.R
 import ger.girod.interview.domain.model.UserModelView
 import kotlinx.android.synthetic.main.suggestion_row.view.*

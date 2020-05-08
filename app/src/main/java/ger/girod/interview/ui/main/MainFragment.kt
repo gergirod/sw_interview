@@ -17,12 +17,13 @@ import ger.girod.interview.R
 import android.app.Activity
 import android.content.Intent
 import android.provider.ContactsContract
-import android.util.Log
-import android.view.inputmethod.InputMethodManager
 import com.google.android.material.snackbar.Snackbar
 import ger.girod.interview.domain.model.UserModelView
 import ger.girod.interview.ui.detail.SAVE_RESULT
 import ger.girod.interview.ui.detail.UserDetailActivity
+import ger.girod.interview.ui.main.adapter.SuggestionsAdapter
+import ger.girod.interview.ui.main.adapter.UserHorizontalListAdapter
+import ger.girod.interview.ui.main.adapter.UserListAdapter
 import ger.girod.interview.ui.utils.ScreenState
 import ger.girod.interview.ui.utils.hideKeyBoard
 import ger.girod.interview.ui.utils.isIntenteSafe
@@ -75,7 +76,8 @@ class MainFragment : Fragment() , SuggestionsAdapter.OnSuggestionRowClickListene
 
     private fun setSearchView() {
         search_view.threshold = 1
-        suggestionsAdapter = SuggestionsAdapter(activity!!, this)
+        suggestionsAdapter =
+            SuggestionsAdapter(activity!!, this)
         search_view.setAdapter(suggestionsAdapter)
         search_view.addTextChangedListener( object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {

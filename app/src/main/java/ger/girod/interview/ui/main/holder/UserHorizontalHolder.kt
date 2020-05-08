@@ -1,4 +1,4 @@
-package ger.girod.interview.ui.main
+package ger.girod.interview.ui.main.holder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -8,20 +8,12 @@ import ger.girod.interview.domain.model.UserModel
 import ger.girod.interview.domain.model.UserModelView
 import kotlinx.android.synthetic.main.users_row.view.*
 
-class UserHolder(itemView : View , val onUsesRowClickListener: UserListAdapter.OnUserRowClickListener) : RecyclerView.ViewHolder(itemView) {
+class UserHorizontalHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
     fun populateData(userModel: UserModelView) {
         itemView.user_image.load(userModel.picture.thumbnail) {
             transformations(CircleCropTransformation())
         }
-        itemView.user_name.text = userModel.nameModelView.getCompleteName()
 
-        itemView.setOnClickListener {
-            onUsesRowClickListener.onUsersRowClicked(userModel)
-        }
-
-        itemView.add_user.setOnClickListener {
-            onUsesRowClickListener.onAddUserClick(userModel)
-        }
     }
 }
