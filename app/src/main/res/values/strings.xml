@@ -10,4 +10,5 @@
     <string name="email">Email : %1$s</string>
     <string name="nationality">Nationality : %1$s</string>
     <string name="not_available">Action not available</string>
+    <string name="user_successfully_saved">User successfully saved</string>
 </resources>
