@@ -26,7 +26,6 @@ class MainViewModel(private val usersRepository: UsersRepository) : ViewModel() 
             screenStateData.value = ScreenState.Loading
             when(val response = usersRepository.getUserList(1, 50)) {
                 is ResultWrapper.Success -> {
-
                     userList.addAll(response.value.results.map { mapUserModel(it) })
                     userInitialData.value = response.value.results.map {mapUserModel(it)}
                 }
@@ -51,7 +50,7 @@ class MainViewModel(private val usersRepository: UsersRepository) : ViewModel() 
             when(val response = usersRepository.getUserList(page, 50)) {
                 is ResultWrapper.Success -> {
                     userList.addAll(response.value.results.map { mapUserModel(it)})
-                    userInitialData.value = response.value.results.map {mapUserModel(it)}
+                    userLoadMoreData.value = response.value.results.map {mapUserModel(it)}
                 }
                 is ResultWrapper.GenericError -> errorData.postValue(response.errorMessage)
                 is ResultWrapper.NetworkError -> errorData.postValue(response.errorMessage)

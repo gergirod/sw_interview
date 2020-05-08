@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -77,6 +78,7 @@ class DetailFragment : Fragment() {
 
         detailViewModel.saveUserData.observe(viewLifecycleOwner, Observer {
             if(it>0) {
+                Toast.makeText(activity, getString(R.string.user_successfully_saved), Toast.LENGTH_LONG).show()
                 isSave = true
             }
         })
