@@ -9,10 +9,12 @@ import ger.girod.interview.domain.model.PictureModelView
 import ger.girod.interview.domain.model.UserModel
 import ger.girod.interview.domain.model.UserModelView
 import ger.girod.interview.domain.response.ResultWrapper
+import ger.girod.interview.domain.use_cases.GetFavoritesUserUseCase
+import ger.girod.interview.domain.use_cases.GetUsersUseCase
 import ger.girod.interview.ui.utils.ScreenState
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val usersRepository: UsersRepository) : ViewModel() {
+class MainViewModel(private val getUsersUseCase: GetUsersUseCase, private val getFavoritesUserUseCase: GetFavoritesUserUseCase) : ViewModel() {
 
     var userList : ArrayList<UserModelView> = ArrayList()
     var userInitialData : MutableLiveData<List<UserModelView>> = MutableLiveData()
@@ -24,7 +26,7 @@ class MainViewModel(private val usersRepository: UsersRepository) : ViewModel() 
     fun getInitialUserList() {
         viewModelScope.launch {
             screenStateData.value = ScreenState.Loading
-            when(val response = usersRepository.getUserList(1, 50)) {
+            when(val response = getUsersUseCase.getUserList(1, 50)) {
                 is ResultWrapper.Success -> {
                     userList.addAll(response.value.results.map { mapUserModel(it) })
                     userInitialData.value = response.value.results.map {mapUserModel(it)}
@@ -47,7 +49,7 @@ class MainViewModel(private val usersRepository: UsersRepository) : ViewModel() 
 
     fun getLoadMoreList(page : Int) {
         viewModelScope.launch {
-            when(val response = usersRepository.getUserList(page, 50)) {
+            when(val response = getUsersUseCase.getUserList(page, 50)) {
                 is ResultWrapper.Success -> {
                     userList.addAll(response.value.results.map { mapUserModel(it)})
                     userLoadMoreData.value = response.value.results.map {mapUserModel(it)}
@@ -60,7 +62,7 @@ class MainViewModel(private val usersRepository: UsersRepository) : ViewModel() 
 
     fun getFavoritesUserList() {
         viewModelScope.launch {
-            when(val response = usersRepository.getFavoritesUsers()) {
+            when(val response = getFavoritesUserUseCase.getFavoritesUsers()) {
                 is ResultWrapper.Success -> {
                     favoritesUserListData.value = response.value.map { mapUserModel(it) }
                 }

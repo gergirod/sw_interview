@@ -5,6 +5,7 @@ import ger.girod.interview.data.api.networkModule
 import ger.girod.interview.data.database.databaseModule
 import ger.girod.interview.data.utils.internetModule
 import ger.girod.interview.data.repository.repositoryModule
+import ger.girod.interview.domain.use_cases.useCasesModules
 import ger.girod.interview.ui.utils.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -23,6 +24,7 @@ class UsersApplication : Application() {
                 databaseModule,
                 repositoryModule,
                 viewModelModule,
+                useCasesModules,
                 internetModule
             ))
         }

@@ -5,6 +5,6 @@ import ger.girod.interview.ui.main.MainViewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    factory { MainViewModel(get()) }
+    factory { MainViewModel(get(), get()) }
     factory { DetailViewModel(get())}
 }
