@@ -7,9 +7,9 @@ import ger.girod.interview.domain.response.ResultWrapper
 import ger.girod.interview.domain.use_cases.SaveFavoriteUserUseCase
 import kotlinx.coroutines.Dispatchers
 
-class UserDetailRepository(private val dao: UserDao) : SaveFavoriteUserUseCase {
+class UserDetailRepository(private val dao: UserDao)  {
 
-    override suspend fun saveFavoriteUser(userModel: UserModel) : ResultWrapper<Long>{
+    suspend fun saveFavoriteUser(userModel: UserModel) : ResultWrapper<Long>{
         return executeLocalRequest(Dispatchers.IO) {
             dao.saveUser(userModel)
         }

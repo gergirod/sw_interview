@@ -14,18 +14,17 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class UsersRepository(private val usersApi: UsersApi, private val userDao: UserDao) : GetFavoritesUserUseCase
-    , GetUsersUseCase, KoinComponent {
+class UsersRepository(private val usersApi: UsersApi, private val userDao: UserDao) : KoinComponent {
 
     private val networkHandler : NetworkHandler by inject()
 
-    override suspend fun getFavoritesUsers(): ResultWrapper<List<UserModel>> {
+    suspend fun getFavoritesUsers(): ResultWrapper<List<UserModel>> {
         return  executeLocalRequest(Dispatchers.IO) {
            userDao.getAllFavoritesUsers()
         }
     }
 
-    override suspend fun getUserList(page: Int, results: Int): ResultWrapper<UserListResponse> {
+    suspend fun getUserList(page: Int, results: Int): ResultWrapper<UserListResponse> {
         return executeNetworkRequest(Dispatchers.IO, networkHandler) {
             usersApi.getUsers(page, results)
         }
